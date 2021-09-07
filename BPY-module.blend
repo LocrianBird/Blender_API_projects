@@ -1,0 +1,32 @@
+import bpy
+
+#______Programmatically Selecting Objects______
+
+def mySelector(objName, additive=False):
+    if not additive:
+        bpy.ops.object.select_all(action = 'DESELECT')
+    bpy.data.objects[objName].select_set(True)
+
+#mySelector('Cube')
+#bpy.ops.transform.translate(value=(1,0,0))
+
+
+#______Programmatically Activating Objects______
+
+def myActivator(objName):
+    bpy.context.view_layer.objects.active = bpy.data.objects[objName]
+
+#myActivator('Cube')
+#print('Active Object', bpy.context.object.name)
+#print('Selected Objects', bpy.context.selected_objects)
+
+
+#_____Programmatically Accessing an Object by Specification_____
+
+def mySpecifier(objName):
+    return bpy.data.objects[objName]
+
+myCube = mySpecifier('Cube')
+print('Location', myCube.location)
+
+

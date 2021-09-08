@@ -1,0 +1,19 @@
+import bpy
+import bmesh
+
+#script fails if scene is empty
+bpy.ops.object.mode_set(mode='OBJECT')
+bpy.ops.object.select_all(action='DESELECT')
+bpy.ops.object.delete()
+
+#Create a cube and eneter EDIT mode
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0,0,0))
+bpy.ops.object.mode_set(mode='EDIT')
+
+#Store a reference to the mesh datablock
+mesh_datablock = bpy.context.object.data
+
+#Create the bmesh object to operate on
+bm = bmesh.from_edit_mesh(mesh_datablock)
+
+print(bm)

@@ -88,6 +88,14 @@ def delete_all():
         bpy.ops.object.select_all(action='DESELECT')
         bpy.ops.object.delete(use_global=False)
         
+#Function for entering Edit Mode with no vertices selected (or Object Mode)
+def mode(mode_name):
+    bpy.ops.object.mode_set(mode=mode_name)
+    if mode_name == 'EDIT':
+        bpy.ops.mesh.select_all(action='DESELECT')
+
+
+        
 if __name__ == "__main__":
     
     #Create a cube

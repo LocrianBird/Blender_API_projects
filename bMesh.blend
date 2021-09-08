@@ -3,17 +3,32 @@ import bmesh
 
 #script fails if scene is empty
 bpy.ops.object.mode_set(mode='OBJECT')
-bpy.ops.object.select_all(action='DESELECT')
+bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete()
 
 #Create a cube and eneter EDIT mode
 bpy.ops.mesh.primitive_cube_add(size=1, location=(0,0,0))
 bpy.ops.object.mode_set(mode='EDIT')
 
+#Set to "Face Mode" for easier visualization
+bpy.ops.mesh.select_mode(type='FACE')
+
 #Store a reference to the mesh datablock
 mesh_datablock = bpy.context.object.data
 
 #Create the bmesh object to operate on
 bm = bmesh.from_edit_mesh(mesh_datablock)
+
+#Select a face
+bm.faces.ensure_lookup_table() #reminds Blender to keep it from being utilized to garbage collector
+bm.faces[0].select = True
+
+#Select an edge
+bm.edges.ensure_lookup_table() 
+bm.edges[7].select = True
+
+#Select a vertex
+bm.verts.ensure_lookup_table() 
+bm.verts[5].select = True
 
 print(bm)

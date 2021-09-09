@@ -46,3 +46,4 @@ bm.verts[3].select = True
 
 bpy.ops.transform.translate(value = (0, 1, 1))
 bpy.ops.object.mode_set(mode='OBJECT')
+
